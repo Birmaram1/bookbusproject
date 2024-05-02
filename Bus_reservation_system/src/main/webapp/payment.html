@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BookBus.com</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(to right, #1e5799, #2989d8, #7db9e8); /* Gradient background */
+    color: #333;
+    overflow-x: hidden; /* To prevent horizontal scrolling */
+  }
+  .container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    border: 1px solid #ccc; /* Border around the container */
+    border-radius: 10px; /* Rounded corners */
+    background-color: #fff; /* Background color */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Box shadow for depth */
+  }
+  h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Text shadow for better visibility */
+  }
+  button {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    margin: 0 10px;
+  }
+  button:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Welcome to BookBus.com</h1>
+  <p>Choose your payment option:</p>
+  <button id="upiButton" onclick="toggleForm('upi')" name="button" value="book" >UPI</button>
+  <button id="netbankingButton" onclick="toggleForm('netbanking')" name="button" value="book" >NETBANKING</button><br><br>
+
+  <div id="upiForm" style="display:none;">
+    <form action="otp" method="post">
+      <input type="text" id="upiField" name="upiField" placeholder="Enter UPI" required>
+      <button type="submit" name="upi">Process</button>
+    </form>
+  </div>
+
+  <div id="netbankingForm" style="display:none;">
+    <form action="otp" method="post">
+      <input type="text" id="bankNameField" name="bankNameField" placeholder="Enter bank name" required>
+      <input type="text" id="cardHolderField" name="cardHolderField" placeholder="Enter card holder name" required><br><br>
+      <input type="text" id="cardNumberField" name="cardNumberField" title="Enter card number in 16 digits" pattern="[0-9]{16}" maxlength="16" placeholder="Input card number" required><br><br>
+      <input type="text" id="cvcField" name="cvcField" title="Enter cvc in 3 digits" pattern="[0-9]{3}" maxlength="3" placeholder="Enter cvc" required><br><br>
+      <input type="date" id="expiryDateField" name="expiryDateField" placeholder="Card expiration" required><br><br>
+      <button type="submit" name="netbanking">Process</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  function toggleForm(formType) {
+    if (formType === 'upi') {
+      document.getElementById('upiForm').style.display = 'block';
+       document.getElementById('netbankingForm').style.display = 'none';
+    } else if (formType === 'netbanking') {
+      document.getElementById('upiForm').style.display = 'none';
+      document.getElementById('netbankingForm').style.display = 'block';
+    }
+  }
+</script>
+
+</body>
+</html>
